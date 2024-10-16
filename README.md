@@ -1,0 +1,2 @@
+# Complete CI/CD Pipeline with AWS EKS & ECR
+This project involved creating a Jenkins pipeline for a simple Java app that pushes an image to a repo in an Elastic Container Registry (ECR) and deploy that app in an Elastic Kubernetes Service (EKS) cluster.
