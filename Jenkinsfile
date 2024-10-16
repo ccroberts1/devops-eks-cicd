@@ -5,6 +5,10 @@ pipeline {
     tools {
         maven 'Maven'
     }
+    environment {
+        DOCKER_REPO_SERVER = '538343889439.dkr.ecr.us-east-1.amazonaws.com'
+        DOCKER_REPO = "${DOCKER_REPO_SERVER}/eks-test"
+    }
     stages {
         stage("init") {
             steps {
@@ -42,7 +46,6 @@ pipeline {
                 AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
                 AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
                 APP_NAME = 'java-maven-app'
-                DOCKER_REPO = 'ccroberts1'
             }
             steps {
                 script {

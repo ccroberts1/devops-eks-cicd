@@ -14,10 +14,10 @@ def buildJar() {
 
 def buildImage() {
     echo "building the docker image..."
-    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t ccroberts1/demo-app:${IMAGE_NAME} .'
-        sh 'echo $PASS | docker login -u $USER --password-stdin'
-        sh 'docker push ccroberts1/demo-app:${IMAGE_NAME}'
+    withCredentials([usernamePassword(credentialsId: 'ecr-credentials', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+        sh 'docker build -t ${DOCKER_REPO}:${IMAGE_NAME} .'
+        sh 'echo $PASS | docker login -u $USER --password-stdin ${DOCKER_REPO_SERVER}'
+        sh 'docker push ${DOCKER_REPO}:${IMAGE_NAME}'
     }
 }
 
