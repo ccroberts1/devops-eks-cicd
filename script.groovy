@@ -28,7 +28,7 @@ def deployApp() {
 }
 
 def commitVersionUpdate() {
-    withCredentials([string(credentialsId: 'github-token', variable: 'TOKEN')]) {
+    withCredentials([string(credentialsId: 'jenkins-eks-test-token', variable: 'TOKEN')]) {
         sh 'git config --global user.email "jenkins@example.com"'
         sh 'git config --global user.name "jenkins"'
 
