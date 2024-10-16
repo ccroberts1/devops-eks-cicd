@@ -37,7 +37,7 @@ def commitVersionUpdate() {
 
         sh 'git add .'
         sh 'git commit -m "ci: version bump"'
-        sh "git push https://${TOKEN}@github.com:ccroberts1/devops-eks-cicd.git HEAD:master"
+        sh "git push https://${TOKEN}@github.com/ccroberts1/devops-eks-cicd.git HEAD:master"
     }
 }
 
