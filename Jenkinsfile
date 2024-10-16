@@ -13,6 +13,13 @@ pipeline {
                 }
             }
         }
+        stage("increment version") {
+                    steps {
+                        script {
+                            gv.incrementVersion()
+                        }
+                    }
+                }
         stage("build jar") {
             steps {
                 script {
@@ -31,11 +38,23 @@ pipeline {
         }
 
         stage("deploy") {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
+                AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
+                APP_NAME = 'java-maven-app'
+            }
             steps {
                 script {
                     gv.deployApp()
                 }
             }
-        }               
+        }
+        stage("commit version update") {
+            steps {
+                script {
+                    gv.commitVersionUpdate()
+                }
+            }
+        }
     }
 } 
